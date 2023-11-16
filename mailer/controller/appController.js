@@ -1,11 +1,15 @@
 const nodemailer = require('nodemailer');
 const mailgen = require('mailgen');
 
-const {EMAIL,PASSWORD} = require('../env.js')
+const {EMAIL,PASSWORD} = require('../env.js');
+
+const generateOTP = require('./generateOTP.js');
 
 const signup = async(req,res) => {
     
    const { userEmail } = req.body;
+
+   const otp = generateOTP;
 
    let config = {
     service: 'gmail',
@@ -18,37 +22,12 @@ const signup = async(req,res) => {
    let transporter = nodemailer.createTransport(config)
 
 
-   let MailGenerator = new mailgen({
-    theme: "default",
-    product : {
-        name: "Pooja Verma",
-        link: "https://www.bibleinfo.com/en/questions/where-is-heaven"
-    }
-
-   })
-
-   let response = {
-    body:{
-        name:"Hello",
-        intro: "Welcome to pooja heaven",
-        table : {
-            data : [{
-                item : "Hello everyone",
-                description: "Heaven price for one night",
-                price:"$210"
-            }]
-        }
-
-    }
-   }
-
-   let mail = MailGenerator.generate(response)
 
    let message = {
     from: EMAIL,
     to : userEmail,
-    subject: "Kya hai bhai",
-    html: mail
+    subject: "OTP from our team Conatus",
+    text:`Your OTP is ${otp}`,
    }
 
    transporter.sendMail(message).then(() => {
@@ -59,6 +38,9 @@ const signup = async(req,res) => {
 
     // res.status(201).json("Signup Successfully...!");
 }
+
+
+
 
 module.exports = {
     signup
