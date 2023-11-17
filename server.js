@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded form d
 
 
 // routes
-app.use('/api',appRoute);
+app.use('/',appRoute);
 
-app.get('/api',(req,res)=>{
+app.get('/',(req,res)=>{
     res.send('Hello everyone');
 })
 
