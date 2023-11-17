@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded form d
 app.use('/',appRoute);
 
 app.get('/',(req,res)=>{
-    res.send('Hello everyone');
+    res.send('Hello everyone, Your name');
 })
 
 app.listen(PORT,()=>{
