@@ -17,7 +17,7 @@ main().then(res => console.log("db connected successfuly"));
 main().catch(err => console.log("db not connected..!!!", err));
 
 async function main() {
-  await mongoose.connect(process.env.DB);
+  await mongoose.connect( "mongodb://127.0.0.1:27017/information");
 
 
   
