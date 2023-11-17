@@ -39,9 +39,21 @@ const signup = async(req,res) => {
     // res.status(201).json("Signup Successfully...!");
 }
 
-
+const verifyemail = async(req,res) => {
+    const otp = generateOTP;
+     const { userotp } = req.body;
+     if(userotp == otp)
+     {
+        res.status(201).json({msg:"Your OTP is verified"});
+     }
+     else if(userotp != otp)
+     {
+        res.status(500).json({msg:"Your OTP is not verified"});
+     }
+}
 
 
 module.exports = {
-    signup
+    signup,
+    verifyemail
 }

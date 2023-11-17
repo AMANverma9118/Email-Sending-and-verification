@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
 
-const {signup} = require('../controller/appController.js')
-
+const {signup , verifyemail} = require('../controller/appController.js')
+// const {verifyemail} = require('../controller/appController.js');
 
 
 router.post('/user/signup',signup);
