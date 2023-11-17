@@ -2,12 +2,16 @@ const express = require('express')
 
 const router = express.Router();
 
+const Usermodel = require('../modules/schema.js');
+const {signup , verifyemail, Registration} = require('../controller/appController.js');
 
-const {signup , verifyemail} = require('../controller/appController.js')
-// const {verifyemail} = require('../controller/appController.js');
+
+
+
 
 
 router.post('/user/signup',signup);
 router.post('/emailverify/signup',verifyemail);
+router.post('/Registration',Registration);
 
 module.exports = router;

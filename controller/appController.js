@@ -1,5 +1,7 @@
+const UserModel = require('../modules/schema.js');
+
 const nodemailer = require('nodemailer');
-const mailgen = require('mailgen');
+const mongoose = require('mongoose');
 
 const {EMAIL,PASSWORD} = require('../env.js');
 
@@ -39,7 +41,7 @@ const signup = async(req,res) => {
     // res.status(201).json("Signup Successfully...!");
 }
 
-const verifyemail = async(req,res) => {
+const verifyemail = (req,res) => {
     const otp = generateOTP;
      const { userotp } = req.body;
      if(userotp == otp)
@@ -53,7 +55,45 @@ const verifyemail = async(req,res) => {
 }
 
 
+const Registration = async(req,res) => {
+    
+
+
+    
+
+    
+    
+    try {
+        
+
+            let result = await UserModel.create({
+                ...req.body,
+               
+            })
+
+
+            res.send({
+                data: result,
+                message: "User created successfully....!!",
+                status: true
+            })
+        
+       
+
+
+
+
+
+    } catch (error) {
+        res.status(403).json({ status: false, error: error })
+    }
+
+}
+
+
+
 module.exports = {
     signup,
-    verifyemail
+    verifyemail,
+    Registration
 }
