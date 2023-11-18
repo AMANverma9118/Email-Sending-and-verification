@@ -12,6 +12,6 @@ const {signup , verifyemail, Registration} = require('../controller/appControlle
 
 router.post('/user/signup',signup);
 router.post('/emailverify/signup',verifyemail);
-router.post('/Registration',Registration);
+router.post('/User/Registration',Registration);
 
 module.exports = router;
