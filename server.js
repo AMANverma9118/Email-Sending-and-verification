@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require('express');
 const appRoute = require('./routes/route')
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+
 const app = express();
 const PORT = process.env.PORT;
 
@@ -13,16 +13,6 @@ const PORT = process.env.PORT;
 
 
 
-main().then(res => console.log("db connected successfuly"));
-main().catch(err => console.log("db not connected..!!!", err));
-
-async function main() {
-  await mongoose.connect(process.env.DB);
-   
-
-
-  
-}
 
 app.use(bodyParser.json()); // Parses JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded form data
@@ -31,7 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded form d
 app.use(express.json());
 
 
+const connectDB = require('./mongoose');
 
+connectDB()
 
 
 // routes
