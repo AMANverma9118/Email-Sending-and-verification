@@ -5,6 +5,10 @@ const appRoute = require('./routes/route')
 const bodyParser = require('body-parser');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
+
 const PORT = process.env.PORT;
 
 
