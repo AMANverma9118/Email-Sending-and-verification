@@ -7,6 +7,8 @@ const {EMAIL,PASSWORD} = require('../env.js');
 
 const generateOTP = require('./generateOTP.js');
 
+const otporiginal = generateOTP;
+
 const signup = async(req,res) => {
     
    const { userEmail } = req.body;
@@ -43,12 +45,12 @@ const signup = async(req,res) => {
 
 const verifyemail = (req,res) => {
     const otp = generateOTP;
-     const { userotp } = req.body;
-     if(userotp == otp)
+    
+     if(otporiginal == otp)
      {
         res.status(201).json({msg:"Your OTP is verified"});
      }
-     else if(userotp != otp)
+     else if(otporiginal != otp)
      {
         res.status(500).json({msg:"Your OTP is not verified"});
      }
