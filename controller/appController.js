@@ -7,13 +7,17 @@ const {EMAIL,PASSWORD} = require('../env.js');
 
 const generateOTP = require('./generateOTP.js');
 
-const otporiginal = generateOTP;
+
+const emailOTPMap = new Map();
 
 const signup = async(req,res) => {
     
    const { userEmail } = req.body;
+   
 
    const otp = generateOTP;
+
+   emailOTPMap.set(userEmail,otp);
 
    let config = {
     service: 'gmail',
@@ -40,20 +44,29 @@ const signup = async(req,res) => {
     return res.status(500).json({Error})
    })
 
-    // res.status(201).json("Signup Successfully...!");
+    
 }
 
 const verifyemail = (req,res) => {
-    const otp = generateOTP;
+   
+     const { userEmail,otp } = req.body;
+    const storedotp = emailOTPMap.get(userEmail);
+
+    if (!storedotp) {
+        return res.status(400).send('OTP not found. Please request a new OTP.');
+      }
+
+
+
+      if (otp == storedotp) {
+        
+        emailOTPMap.delete(userEmail); // Remove the used OTP from storage
+        return res.status(200).send('Email verified successfully!');
+      } 
+      else {
+        return res.status(400).send('Invalid OTP. Please try again.');
+      }
     
-     if(otporiginal == otp)
-     {
-        res.status(201).json({msg:"Your OTP is verified"});
-     }
-     else if(otporiginal != otp)
-     {
-        res.status(500).json({msg:"Your OTP is not verified"});
-     }
 }
 
 

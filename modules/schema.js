@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema({
     UserBio: {
         type: String,
         required: true
+    },
+    verified:{
+        type: String,
     }
 
 
@@ -27,6 +30,8 @@ const userSchema = new mongoose.Schema({
 
 
 
+
+    
 });
 
 module.exports = mongoose.model('user', userSchema);
