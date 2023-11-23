@@ -11,20 +11,21 @@ const userSchema = new mongoose.Schema({
     UserPhonenumber: {
         type: Number,
         required: true,
+        unique:true
     },
     UserGender: {
         type: String,
         required: true,
+        unique:true
 
 
     },
     UserBio: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
-    verified:{
-        type: String,
-    }
+   
 
 
 
