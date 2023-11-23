@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
     UserName: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     UserPhonenumber: {
         type: Number,
-        required: true
+        required: true,
     },
     UserGender: {
         type: String,
