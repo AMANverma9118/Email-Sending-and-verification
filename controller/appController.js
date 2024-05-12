@@ -87,7 +87,7 @@ const Registration = async(req,res) => {
             })
 
 
-            res.send({
+            res.status({
                 data: result,
                 message: "User created successfully....!!",
                 status: true

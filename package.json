@@ -2,7 +2,7 @@
   "name": "mailer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "proxy":"http://localhost:5000",
   "scripts": {
     "start": "nodemon server.js",
